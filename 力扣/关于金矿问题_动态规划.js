@@ -4,12 +4,12 @@
 //动态规划就是把简单的问题转换成规模较小的子问题,
 //再从简单的子问题自底向上一步一步递推,最终得到问题的最优解
 //动态规划的要点:确定全局最优解和最优子结构之间的关系 , 以及问题的边界
-// let w = 10//工人数量
-// let n = 5 //可选金矿数量
-// let gold = {
-//     p:[5,5,3,4,3],//金矿开采需要的工人数量
-//     g:[500,400,350,300,200]//金矿储量
-// }
+let w = 10//工人数量
+let n = 5 //可选金矿数量
+let gold = {
+    p:[5,5,3,4,3],//金矿开采需要的工人数量
+    g:[500,400,350,300,200]//金矿储量
+}
 
 // let F = (w,n,gold)=>{
 //     //金矿没了或者是人没了都返回 0 
@@ -24,8 +24,18 @@
 //     return Math.max(F(w,n-1,gold),F(w-gold.p[n-1],n-1,gold)+gold.g[n-1])
 // }
 
+let F = (w,n,gold)=>{
+    if(w==0||n==0){
+        return  0
+    }
+    if(w<gold.p[n-1]){
+        return F(w,n-1,gold);
+    }
+    return  Math.max(F(w,n-1,gold),F(w-gold.p[n-1],n-1,gold)+gold.g[n-1]);
+}
 
-// console.log(F(w,n,gold));
+
+console.log(F(w,n,gold));
 
 
 
@@ -58,46 +68,46 @@
 //但是这种方法的性能非常低
 //这里就要引入动态规划的另一个核心的要点: 自底向上求解(记忆化搜索)
 
-let w = 10//工人数量
-let n = 5 //可选金矿数量
-let gold = {
-    p:[5,5,3,4,3],//金矿开采需要的工人数量
-    g:[500,400,350,300,200]//金矿储量
-}
+// let w = 10//工人数量
+// let n = 5 //可选金矿数量
+// let gold = {
+//     p:[5,5,3,4,3],//金矿开采需要的工人数量
+//     g:[500,400,350,300,200]//金矿储量
+// }
 
-// 写一个二维数组
-let arr = Array(gold.g.length).fill(0).map(x=>Array(w).fill(0))
-let getBestGoldMiningV2 = (arr)=>{
-    //数组每一格都根据条件进行状态转移方程
-    arr.forEach((item,index)=>{
-        //把第一行的状态方程补满
-        if(index==0){
-            item.forEach((item2,index2)=>{
-                if(gold.p[index]<=index2+1){
-                    arr[index][index2] = gold.g[index]
-                }
-            })
-        }
-        else
-        item.forEach((item2,index2)=>{
-            //人数不够就去看看上一个
-            if(gold.p[index]>index2+1){
-                arr[index][index2] = arr[index-1][index2]
-            }
-            //返回挖和不挖之间的最大值(每一行的值都可以状态转移到上一行去)
-            else
-            {
-            let j = index2-gold.p[index]==-1?0:index2-gold.p[index]
-            arr[index][index2] = 
-            Math.max(arr[index-1][index2],arr[index-1][j]+gold.g[index])
-            }
-        })
-    })
+// // 写一个二维数组
+// let arr = Array(gold.g.length).fill(0).map(x=>Array(w).fill(0))
+// let getBestGoldMiningV2 = (arr)=>{
+//     //数组每一格都根据条件进行状态转移方程
+//     arr.forEach((item,index)=>{
+//         //把第一行的状态方程补满
+//         if(index==0){
+//             item.forEach((item2,index2)=>{
+//                 if(gold.p[index]<=index2+1){
+//                     arr[index][index2] = gold.g[index]
+//                 }
+//             })
+//         }
+//         else
+//         item.forEach((item2,index2)=>{
+//             //人数不够就去看看上一个
+//             if(gold.p[index]>index2+1){
+//                 arr[index][index2] = arr[index-1][index2]
+//             }
+//             //返回挖和不挖之间的最大值(每一行的值都可以状态转移到上一行去)
+//             else
+//             {
+//             let j = index2-gold.p[index]==-1?0:index2-gold.p[index]
+//             arr[index][index2] = 
+//             Math.max(arr[index-1][index2],arr[index-1][j]+gold.g[index])
+//             }
+//         })
+//     })
 
-    //返回最后一格
-    return arr[gold.g.length-1][w-1]
-}
-console.log(getBestGoldMiningV2(arr));
+//     //返回最后一格
+//     return arr[gold.g.length-1][w-1]
+// }
+// console.log(getBestGoldMiningV2(arr));
 
 
 
