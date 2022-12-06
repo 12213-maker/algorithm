@@ -1,6 +1,6 @@
 // let num = [5, 8, 6, 3, 9, 2, 1, 7]
 
-//双边循环
+// // 双边循环
 // let quickSort = (num, left, right) => {
 //     if (left >= right) return;
 //     //设置基准数
