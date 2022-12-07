@@ -1,2 +1,2 @@
 # algorithm
-### 算法+js手写
+### 算法+js api手写
