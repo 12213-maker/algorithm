@@ -69,3 +69,7 @@ const longestValidParentheses = (s) => {
     }
     return maxLen;
 };
+
+
+s = "{}{()}"
+console.log(longestValidParentheses(s));

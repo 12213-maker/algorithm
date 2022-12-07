@@ -24,4 +24,17 @@ var rob = function (nums) {
     return max
 };
 
-console.log(rob([183,219,57,193,94,233,202,154,65,240,97,234,100,249,186,66,90,238,168,128,177,235,50,81,185,165,217,207,88,80,112,78,135,62,228,247,211]));
+var rob = function(nums) {
+    let len = nums.length
+
+    //使用自底向上的dp数组
+    const dp = new Array(len+1).fill(0)
+    dp[1] = nums[0]
+    for(let i=2;i<=len;i++){
+        //这里使用nums[i-1]的原因是nums数组和dp数组不是对齐的
+        dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i-1])
+    }
+    return dp[len]
+};  
+
+console.log(rob([2,7,9,3,1]));
