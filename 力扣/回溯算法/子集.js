@@ -15,21 +15,21 @@
  * @return {number[][]}
  */
 //这是我的题解，原来我的想法是回溯，但是没有执行好
- var subsets = function(nums) {
-    let result = []
-    //使用dfs
-    const dfs = (nums,idx)=>{
-        if(idx===nums.length){
-            return []
-        }
-        //不选择当前的数
-        result.push(dfs(nums,idx+1))
-        //选择当前的数
-        result.push([nums[idx],dfs(nums,idx+1)])
-        return  result
-    }
-    return dfs(nums,0)
-};
+//  var subsets = function(nums) {
+//     let result = []
+//     //使用dfs
+//     const dfs = (nums,idx)=>{
+//         if(idx===nums.length){
+//             return []
+//         }
+//         //不选择当前的数
+//         result.push(dfs(nums,idx+1))
+//         //选择当前的数
+//         result.push([nums[idx],dfs(nums,idx+1)])
+//         return  result
+//     }
+//     return dfs(nums,0)
+// };
 //下面来看看真正的回溯是怎么写的
 /* 
 为什么要回溯？因为不是找到一个子集就完事的，
@@ -42,25 +42,30 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+var nums = [1,2,3];
 //额，正确的回溯，通过dfs构建一颗符合条件的树，再通过回溯来找到符合条件的解
 //1 . 这个解法是回收最后全部的叶节点
- var subsets = function(nums) {
-    let result = []
-    const dfs = (list,idx)=>{
-        if(idx==nums.length){
-            result.push(list.slice());
-            return
-        }
-        //选择这个数
-        list.push(nums[idx])
-        dfs(list,idx+1)
-        //回溯
-        list.pop()
-        dfs(list,idx+1)
-    }
-    dfs([],0)
-    return result
-};
+//  var subsets = function(nums) {
+//     let result = []
+//     const dfs = (list,idx)=>{
+//         if(idx==nums.length){
+//             console.log(list);
+//             result.push(list);
+//             return
+//         }
+//         //选择这个数
+//         list.push(nums[idx])
+//         dfs(list,idx+1)
+//         //回溯
+//         list.pop()
+//         dfs(list,idx+1)
+//     }
+//     dfs([],0)
+//     return result
+// };
+
+// console.log(subsets(nums));
+
 
 //2 . 下面这个解法是在递归的过程中就把符合题解的答案收集起来
 /* 

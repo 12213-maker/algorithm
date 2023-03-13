@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@media screen</title>
+    <style>
+      .box {
+        width: 10rem;
+        height: 10rem;
+        background-color: pink;
+        margin-left: 20rem;
+      }
+      @media screen and (min-width: 1200px) {
+        html {
+          font-size: 20px;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        html {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">showme</div>
+  </body>
+</html>

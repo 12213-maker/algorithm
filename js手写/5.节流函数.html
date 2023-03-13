@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="divRef">点击我</div>
+
+</body>
+<script>
+
+  //节流
+  function throttle(fn, delay) {
+    let timer = null;
+    return function () {
+      let arg = arguments;
+      if (!timer) {
+        timer = setTimeout(() => {
+          fn.apply(this, arg);
+          timer = null;
+        }, delay)
+      }
+    }
+  }
+
+  // test
+  function testThrottle(content) {
+    console.log(content);
+    console.log("2222");
+  }
+  let testThrottleFn = throttle(testThrottle, 3000); // 节流函数
+  document.onmousemove = function () {
+    testThrottleFn('1111throttle'); // 给节流函数传参
+  }
+
+
+  //防抖
+  function debounce(fn, delay) {
+    let timer = null;
+
+    return function () {
+      let arg = arguments;
+      if (timer) {
+        clearInterval(timer)
+      }
+      timer = setTimeout(() => {
+        fn.apply(this, arg);
+      }, delay)
+
+    }
+  }
+  function showme() {
+    alert('showme')
+  }
+  const div = document.getElementById('divRef')
+  div.addEventListener('click', debounce(showme, 3000))
+
+
+
+  //节流
+  function jieliu(fn,delay){
+    let timer = undefined;
+    return function(){
+      let arg = arguments;
+      if(!timer){
+      timer = setTimeout(()=>{
+        fn.apply(this,arg)
+        //执行完了之后要重置tiemr
+        timer = null
+      },delay)
+    }
+    }
+  }
+
+  //防抖
+  function debounce(fn,delay){
+    let timer = undefined;
+    return function(){
+      let args = arguments;
+      if(timer){
+        clearInterval(timer)
+      }
+      tiemr = setTimeout(()=>{
+        fn.apply(this,args)
+      },delay)
+
+    }
+  }
+
+</script>
+
+</html>

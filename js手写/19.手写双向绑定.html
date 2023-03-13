@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="input">
+  <p id="p"></p>
+  <button id="butn">数据到视图</button>
+
+</body>
+<script>
+  let data = {}
+  let value = 'showme'
+  const inp = document.getElementById('input')
+  const but = document.getElementById('butn')
+  const p = document.getElementById('p')
+  function changeNewValue() {
+    inp.value = value
+    p.innerText = value
+  }
+  changeNewValue()
+  Object.defineProperty(data, 'value', {
+    get: function () {
+      return value
+    },
+    set: function (newValue) {
+      value = newValue
+      changeNewValue()
+    }
+  })
+
+  //实现数据到视图
+  but.addEventListener('click', () => {
+    data.value = 'sss'
+  })
+
+  function debounce(e,fn,delay){
+    let timer = null
+    return ()=>{
+      if(timer){
+        clearTimeout(timer)
+      }
+      timer = setTimeout(()=>{
+        fn.apply(this,[e])
+      },delay)
+    }
+
+  }
+
+  const click = (e)=>{
+    data.value = e.target.value
+
+  }
+  inp.addEventListener('input',(e)=>{
+    debounce(e,click,100)()
+  })
+  
+
+</script>
+
+</html>

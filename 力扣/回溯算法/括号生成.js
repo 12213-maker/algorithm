@@ -10,7 +10,7 @@
  * @return {string[]}
  */
 
- //这个没有回溯，只是把符合答案的题解都保存了起来
+ //这个没有回溯，只是把符合答案的题解都保存了起来，好像是只用了dfs深度优先遍历
  var generateParenthesis = function(n) {
     const res = []
     const dfs = (lRemain,rRemain,str)=>{
