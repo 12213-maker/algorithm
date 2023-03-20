@@ -33,9 +33,9 @@
 
 
 
-// let num = [4,7,3,5,6,2,8,1]
+let num = [3,2,5,1]
 
-// //单边循环
+//单边循环
 // let quickSort = (num, left, right) => {
 //     let flag = left
 //     let mark = left
@@ -108,8 +108,8 @@
 // console.log(num);
 
 
-let num = [3,2,5,1,0,6,8,7]
-//快排就是要把基准值放到中间的某个位置上，让左边的小于它，右边的大于它
+// let num = [3,2,5,1,0,6,8,7]
+// //快排就是要把基准值放到中间的某个位置上，让左边的小于它，右边的大于它
 function quickSort(arr,left,right){
     //设置基准值
     let index = left
@@ -119,12 +119,12 @@ function quickSort(arr,left,right){
     //最后一个也要判断，因为是单边循环
     while(left<=right){
         if(arr[left]<target){
-            [arr[left],arr[mark]] = [arr[mark],arr[left]]
             mark++
+            [arr[left],arr[mark]] = [arr[mark],arr[left]]
         }
         left++
     }
-    arr[mark] = target
+    [arr[index],arr[mark]] = [arr[mark],arr[index]]
     return mark
 }
 // function reallySort(num,left,right){

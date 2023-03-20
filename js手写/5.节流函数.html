@@ -80,7 +80,7 @@
   //防抖
   function debounce(fn,delay){
     let timer = undefined;
-    return function(){
+    return ()=>{
       let args = arguments;
       if(timer){
         clearInterval(timer)

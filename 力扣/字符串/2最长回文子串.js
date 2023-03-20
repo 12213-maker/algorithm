@@ -6,8 +6,6 @@
 
  var longestPalindrome = function(s) {
     let max = ''
-    let left = null
-    let right = null
 
     //遍历整个字符串，当字符串长度为奇数的时候，left = right = i
     //当字符串长度为偶数的时候， left = i ， right = i+1
@@ -19,7 +17,6 @@
     
 
     function revert(left,right){
-
         while(left>=0&&right<=s.length-1&&s.charAt(left)===s.charAt(right)){
             center = s.substring(left,right+1)
             left--

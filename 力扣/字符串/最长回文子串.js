@@ -23,4 +23,4 @@ function returnMax(s){
     }
     return maxStr.join('')
 }
-console.log(returnMax('a'));
+console.log(returnMax('ababddd'));
