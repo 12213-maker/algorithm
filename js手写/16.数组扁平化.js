@@ -25,15 +25,42 @@ function flaten(arr) {
 //还可以使用flat来扁平化
 // console.log(arr.flat(Infinity));
 
-function flatMyarr(arr){
-    return arr.reduce((acc,cur)=>{
-      if(Array.isArray(cur)){
-        acc.push(...flatMyarr(cur));
-      }else{
-        acc.push(cur)
-      }
-      return acc
-    },[])
+function flatMyarr(arr) {
+  return arr.reduce((acc, cur) => {
+    if (Array.isArray(cur)) {
+      acc.push(...flatMyarr(cur));
+    } else {
+      acc.push(cur)
+    }
+    return acc
+  }, [])
 }
 
-console.log(flatMyarr(arr));
+// console.log(flatMyarr(arr));
+
+
+function flagArr(arr) {
+  let ans = []
+  arr.forEach((item) => {
+    if (!Array.isArray(item)) {
+      ans.push(item)
+    } else {
+      ans.push(...flagArr(item))
+    }
+  })
+  return ans
+}
+
+console.log(flagArr(arr), 5454);
+
+
+
+
+
+
+
+
+
+
+
+

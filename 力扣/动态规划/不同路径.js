@@ -33,7 +33,6 @@ var uniquePaths = function(m, n) {
     }
 
     return arr[m-1][n-1]
-
 };
 
 

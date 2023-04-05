@@ -9,6 +9,9 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
+
+//判断一个树是否是平衡二叉树，如果是返回最大深度，不是则返回false
+
  //一个树的深度是由左子树与右子树中的最大值+1
  var isBalanced = function(root) {
   let flag = true
@@ -32,6 +35,5 @@
       }
       return Math.max(leftHeight,rightHeight)+1
   }
-  console.log(findHeight(root))
-  return flag
+  return flag?findHeight(root):false
 };

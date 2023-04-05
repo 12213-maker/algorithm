@@ -4,28 +4,23 @@
 
 //备注:使用new Fun()的时候,如果Fun函数有返回,且返回是对象的时候,new Fun()就会返回这个对象
 
-function Obj(){
-  return{name:'showme'}
-}
-console.log(new Obj());
-
 //最最简介版的new,不做参数判断
-function myNew2(con, ...args) {
-  let obj = Object.create(con.prototype);
-  let result = con.apply(obj, args);
-  //判断构造函数的返回值会不会返回对象,不是就返回我们创建的obj对象(原理见上面备注)
-  return result instanceof Object ? result : obj;
-}
+// function myNew2(con, ...args) {
+//   let obj = Object.create(con.prototype);
+//   let result = con.apply(obj, args);
+//   //判断构造函数的返回值会不会返回对象,不是就返回我们创建的obj对象(原理见上面备注)
+//   return result instanceof Object ? result : obj;
+// }
 
-function Test(name, age) {
-  this.name = name
-  this.age = age
-}
-Test.prototype.sayName = function () {
-  console.log(this.name);
-}
-let foo = myNew2(Test, 'lnl', '21')
-foo.sayName()
+// function Test(name, age) {
+//   this.name = name
+//   this.age = age
+// }
+// Test.prototype.sayName = function () {
+//   console.log(this.name,this.age);
+// }
+// let foo = myNew2(Test, 'lnl', '21')
+// foo.sayName()
 
 
 
@@ -55,3 +50,23 @@ foo.sayName()
 
 // const foo3 = objectFactory(Fun, '3333');
 // console.log(foo3.name);
+
+
+
+//最最简介版的new,不做参数判断
+function myNew2(con, ...args) {
+  let obj = Object.create(con.prototype);
+  let result = con.apply(obj, args);
+  //判断构造函数的返回值会不会返回对象,不是就返回我们创建的obj对象(原理见上面备注)
+  return result instanceof Object ? result : obj;
+}
+
+function Test(name, age) {
+  this.name = name
+  this.age = age
+}
+Test.prototype.sayName = function () {
+  console.log(this.name,this.age);
+}
+let foo = myNew2(Test, 'lnl', '21')
+foo.sayName()

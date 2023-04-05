@@ -19,3 +19,19 @@ function myAjax(method, url, data) {
     xhr.send(data);
   })
 }
+
+function myAjax2(method, url, data) {
+  new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open(method, url)
+    xhr.onreadystatechange = function () {
+      if (xhr.status === 200 && xhr.readyState == 4) {
+        resolve(xhr.responseText)
+      } else {
+        reject(xhr.responseText)
+      }
+    }
+    xhr.send(data)
+  })
+
+}

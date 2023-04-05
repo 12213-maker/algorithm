@@ -19,9 +19,10 @@
     let timer = null;
     return function () {
       let arg = arguments;
+      let context = this
       if (!timer) {
         timer = setTimeout(() => {
-          fn.apply(this, arg);
+          fn.apply(context, arg);
           timer = null;
         }, delay)
       }

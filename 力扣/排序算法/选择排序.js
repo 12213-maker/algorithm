@@ -13,4 +13,5 @@ let SelectSort = (arr)=>{
 
     console.log(arr);
 }
-SelectSort(num)
+SelectSort(num);
+

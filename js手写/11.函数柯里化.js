@@ -163,3 +163,32 @@ console.log(curryFn(1,2,3));
 console.log(curryFn(1)(2)(3));
 console.log(curryFn(1,2)(3));
 console.log(curryFn(1)(2,3));
+
+
+// function sum(a, b, c) {
+//     return a + b + c
+//   }
+  
+//   console.log(sum(1, 2, 3))
+//   function curry(fn) {
+  
+  
+//     return function changeTocurry(...arg) {
+//       if (fn.length === arg.length) {
+//         return fn.apply(this, [...arg])
+//       } else {
+//         return function newCurry(...newarg) {
+//           return changeTocurry.apply(this, [...arg, ...newarg]);
+//         }
+//       }
+//     }
+  
+  
+  
+//   }
+//   let curried = curry(sum);
+//   console.log(curried(1, 2, 3))
+//   console.log(curried(1)(2, 3))
+//   console.log(curried(1, 2)(3))
+//   console.log(curried(1)(2)(3))
+  

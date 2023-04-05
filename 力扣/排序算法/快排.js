@@ -33,7 +33,7 @@
 
 
 
-let num = [3,2,5,1]
+// let num = [3,2,5,1]
 
 //单边循环
 // let quickSort = (num, left, right) => {
@@ -110,23 +110,23 @@ let num = [3,2,5,1]
 
 // let num = [3,2,5,1,0,6,8,7]
 // //快排就是要把基准值放到中间的某个位置上，让左边的小于它，右边的大于它
-function quickSort(arr,left,right){
-    //设置基准值
-    let index = left
-    //标记最后基准值的位置方便交换
-    let mark = left
-    let target = arr[index]
-    //最后一个也要判断，因为是单边循环
-    while(left<=right){
-        if(arr[left]<target){
-            mark++
-            [arr[left],arr[mark]] = [arr[mark],arr[left]]
-        }
-        left++
-    }
-    [arr[index],arr[mark]] = [arr[mark],arr[index]]
-    return mark
-}
+// function quickSort(arr,left,right){
+//     //设置基准值
+//     let index = left
+//     //标记最后基准值的位置方便交换
+//     let mark = left
+//     let target = arr[index]
+//     //最后一个也要判断，因为是单边循环
+//     while(left<=right){
+//         if(arr[left]<target){
+//             mark++
+//             [arr[left],arr[mark]] = [arr[mark],arr[left]]
+//         }
+//         left++
+//     }
+//     [arr[index],arr[mark]] = [arr[mark],arr[index]]
+//     return mark
+// }
 // function reallySort(num,left,right){
 //     if(left>=right){
 //         return;
@@ -138,18 +138,48 @@ function quickSort(arr,left,right){
 // }
 
 //用栈来代替递归
-function reallySort(num,left,right){
-    let stack = [[left,right]]
-    while(stack.length){
-        //执行栈头元素
-        let cur = stack.pop()
-        if(cur[0]>=cur[1]){
-            continue;
+// function reallySort(num,left,right){
+//     let stack = [[left,right]]
+//     while(stack.length){
+//         //执行栈头元素
+//         let cur = stack.pop()
+//         if(cur[0]>=cur[1]){
+//             continue;
+//         }
+//         let flag = quickSort(num,cur[0],cur[1])
+//         stack.push([flag+1,cur[1]]);
+//         stack.push([cur[0],flag-1]);
+//     }
+//     return num
+// }
+// console.log(reallySort(num,0,num.length-1));
+
+
+
+let num = [3, 2, 5, 6, 7, 8, 1, 0, 6, 8, 7];
+function quickSort(arr, left, right) {
+    let index = left;
+    let mark = left;
+    let flag = arr[left];
+    while (left <= right) {
+        if (arr[left] < flag) {
+            mark++
+            [arr[left], arr[mark]] = [arr[mark], arr[left]];
         }
-        let flag = quickSort(num,cur[0],cur[1])
-        stack.push([flag+1,cur[1]]);
-        stack.push([cur[0],flag-1]);
+        left++;
     }
-    return num
+    [arr[index], arr[mark]] = [arr[mark], arr[index]];
+    return mark;
 }
-console.log(reallySort(num,0,num.length-1));
+
+
+function sort(num, left, right) {
+    if (left >= right) return;
+    let flag = quickSort(num, left, right);
+    sort(num, left, flag - 1);
+    sort(num, flag + 1, right);
+}
+
+sort(num, 0, num.length - 1)
+console.log(num, 'showme');
+

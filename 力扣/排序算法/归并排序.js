@@ -79,36 +79,80 @@
 
 
 
-let num = [2, 5, 3, 1, 5, 6, 2, 1, 10, 9, 5, 2,]
+// let num = [2, 5, 3, 1, 5, 6, 2, 1, 10, 9, 5, 2,]
 
-function merge(leftArr, rightArr) {
+// function merge(leftArr, rightArr) {
+//     let ans = []
+//     let left = 0
+//     let right = 0
+//     while (left < leftArr.length && right < rightArr.length) {
+//         if (leftArr[left] < rightArr[right]) {
+//             ans.push(leftArr[left])
+//             left++
+//         } else {
+//             ans.push(rightArr[right])
+//             right++
+//         }
+//     }
+//     if (left < leftArr.length) {
+//         ans.push(...leftArr.slice(left))
+//     } else {
+//         ans.push(...rightArr.slice(right))
+//     }
+//     return ans
+// }
+
+// function mergeSort(arr) {
+//     if (arr.length <= 1) {
+//         return arr
+//     }
+//     let mid = Math.floor(arr.length / 2)
+//     let leftArr = mergeSort(arr.slice(0, mid))
+//     let rightArr = mergeSort(arr.slice(mid))
+//     return merge(leftArr, rightArr)
+// }
+// console.log(mergeSort(num))
+
+
+
+
+
+
+
+function merge(arr1, arr2) {
     let ans = []
-    let left = 0
-    let right = 0
-    while (left < leftArr.length && right < rightArr.length) {
-        if (leftArr[left] < rightArr[right]) {
-            ans.push(leftArr[left])
-            left++
+    let left1 = 0;
+    let left2 = 0
+    while (left1 < arr1.length && left2 < arr2.length) {
+        let num1 = arr1[left1];
+        let num2 = arr2[left2];
+        if (num1 < num2) {
+            ans.push(num1);
+            left1++;
         } else {
-            ans.push(rightArr[right])
-            right++
+            ans.push(num2);
+            left2++;
         }
+
     }
-    if(left<leftArr.length){
-        ans.push(...leftArr.slice(left))
-    }else{
-        ans.push(...rightArr.slice(right))
+
+    if (left1 < arr1.length) {
+        ans.push(...arr1.splice(left1));
     }
-    return ans
+    if (left2 < arr2.length) {
+        ans.push(...arr2.splice(left2));
+    }
+    return ans;
 }
 
-function mergeSort(arr) {
-    if (arr.length <= 1) {
-        return arr
-    }
-    let mid = Math.floor(arr.length / 2)
-    let leftArr = mergeSort(arr.slice(0, mid))
-    let rightArr = mergeSort(arr.slice(mid))
-    return merge(leftArr, rightArr)
+function mergeSort(arr, left, right) {
+    if (left >= right) return [arr[left]];
+    let mid = Math.floor((right - left) / 2) + left;
+    let arr1 = mergeSort(arr, left, mid);
+    let arr2 = mergeSort(arr, mid + 1, right);
+    return merge(arr1, arr2);
 }
-console.log(mergeSort(num))
+
+let num = [5,66,2,1,4,5,8,9,5,12,3,6,54,41,2,5,63,2,14,52,2]
+console.log(mergeSort(num, 0, num.length - 1));
+
