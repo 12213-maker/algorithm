@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      background-color: lightblue;
+      width: 100px;
+    }
+
+    .sigleline {
+      background-color: lightpink;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* 指定行内元素不换行 */
+      white-space: nowrap;
+    }
+
+
+    
+    p {
+      background-color: lightyellow;
+      
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="sigleline">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</div>
+    <p>文本溢出我们经常用到的应该就文本溢出我们经常用到的应该就</p>
+    <p>1111111111111111111111111111111111111111111111111111</p>
+  </div>
+</body>
+
+</html>
